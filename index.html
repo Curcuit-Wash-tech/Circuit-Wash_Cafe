@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuit Wash - Smart IoT Laundry & Cafe</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="smooth-gradient-body">
+
+    <!-- ANIMASI INTRO / LOADING SCREEN -->
+    <div id="intro-loader" class="intro-loader-overlay">
+        <div class="loader-content" id="loader-laundry-content">
+            <div class="animated-washing-machine">
+                <div class="machine-door">
+                    <div class="water-bubble-spin"></div>
+                </div>
+            </div>
+            <h3 class="loader-text">CIRCUIT WASH IOT</h3>
+            <p>Menyiapkan Sistem Mesin Pintar...</p>
+        </div>
+
+        <div class="loader-content hidden" id="loader-cafe-content">
+            <div class="animated-coffee-cup">
+                <div class="steam-line s1"></div>
+                <div class="steam-line s2"></div>
+                <div class="steam-line s3"></div>
+                <i class="fa-solid fa-mug-hot fa-4x"></i>
+            </div>
+            <h3 class="loader-text wood-text-glow">CAFÉ</h3>
+            <p>Menyeduh Kopi & Menyiapkan Suasana Cozy...</p>
+        </div>
+    </div>
+
+    <!-- Header Navbar -->
+    <header class="navbar">
+        <div class="logo-box">
+            <div class="brand-logo-symbol">
+                <svg viewBox="0 0 100 100" class="c-wave-logo">
+                    <path d="M50 10 C25 10 10 25 10 50 C10 75 25 90 50 90 C65 90 78 82 85 70 L70 60 C65 68 58 72 50 72 C38 72 28 62 28 50 C28 38 38 28 50 28 C58 28 65 32 70 40 L85 30 C78 18 65 10 50 10 Z" fill="#00F5D4"/>
+                    <path d="M30 52 Q40 42 50 52 T70 52" stroke="#00F5D4" stroke-width="6" fill="none"/>
+                </svg>
+            </div>
+            <div>
+                <span class="logo-title-giant">CIRCUIT <span class="highlight-cyan">WASH</span></span>
+                <span class="logo-sub">LAUNDRY × CAFÉ</span>
+            </div>
+        </div>
+
+        <!-- Tab Switches -->
+        <nav class="nav-links">
+            <button class="tab-btn active" onclick="switchPage('laundry-page', 'laundry')"><i class="fa-solid fa-soap"></i> LAUNDRY IOT</button>
+            <button class="tab-btn" onclick="switchPage('cafe-page', 'cafe')"><i class="fa-solid fa-mug-hot"></i> KAFE & MENU</button>
+        </nav>
+    </header>
+
+    <!-- ======================================================= -->
+    <!-- HALAMAN 1: SMART LAUNDRY IOT                            -->
+    <!-- ======================================================= -->
+    <div id="laundry-page" class="page-tab-content active-tab-page">
+        
+        <!-- Hero Section Laundry -->
+        <section class="hero-building-section">
+            <div class="hero-overlay">
+                <div class="hero-badge"><i class="fa-solid fa-circle-dot glow-dot"></i> Self-Service IoT Laundry 24 Jam</div>
+                <h1 class="hero-logo-text">CIRCUIT <span class="cyan-text">WASH</span></h1>
+                <p class="hero-tagline">LAUNDRY × CAFÉ</p>
+                <h2 class="hero-title-sub">Nyuci Canggih Tanpa Antre, <br><span class="gradient-text-gold">Tinggal Scan, Mesin Berputar!</span></h2>
+                <p class="hero-desc">Bebas ribet token/koin! Cukup booking dari HP, scan QR di mesin cuci, dan mesin jalan otomatis. Pantau timer cucian dari mana saja!</p>
+                
+                <div class="hero-buttons">
+                    <a href="#action-zone" class="btn-3d btn-primary-cyan"><i class="fa-solid fa-qrcode"></i> Booking Mesin IoT</a>
+                    <a href="#action-zone" class="btn-3d btn-secondary-amber"><i class="fa-solid fa-stopwatch"></i> Live Tracker Timer</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricelist Laundry Slider -->
+        <section id="laundry-section" class="main-block section-laundry">
+            <div class="block-header">
+                <span class="giant-label navy-label">01. SMART LAUNDRY</span>
+                <h2 class="giant-title">LAYANAN & <span class="cyan-text">PRICELIST LAUNDRY</span></h2>
+                <p class="section-desc-text">Pilih kapasitas dan tipe pencucian sesuai kebutuhanmu (Geser kartu untuk melihat layanan)!</p>
+            </div>
+
+            <div class="slider-wrapper">
+                <button class="slide-btn prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                
+                <div class="cards-slider" id="cardsSlider">
+                    <!-- Card 1: Cuci -->
+                    <div class="service-card">
+                        <div class="card-image-box">
+                            <img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?auto=format&fit=crop&w=600&q=80" alt="Layanan Cuci">
+                            <span class="tag-badge cyan-bg"><i class="fa-solid fa-water"></i> WASHING</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Layanan Cuci (Washing)</h3>
+                            <p class="card-subtitle">Free Deterjen & Softener Aromatik Otomatis</p>
+                            <div class="weight-selector">
+                                <label>Pilih Kapasitas Pakaian:</label>
+                                <div class="weight-buttons">
+                                    <button class="w-btn active" onclick="updateWash('7kg')">7 KG</button>
+                                    <button class="w-btn" onclick="updateWash('12kg')">12 KG</button>
+                                    <button class="w-btn" onclick="updateWash('18kg')">18 KG</button>
+                                </div>
+                            </div>
+                            <div class="price-duration-box">
+                                <div class="price-mode">
+                                    <span>Quick Wash</span>
+                                    <strong id="wash-quick-price">Rp 8.000</strong>
+                                    <small id="wash-quick-time"><i class="fa-regular fa-clock"></i> 20 Mnt</small>
+                                </div>
+                                <div class="price-divider"></div>
+                                <div class="price-mode">
+                                    <span>Deep Clean</span>
+                                    <strong id="wash-deep-price">Rp 12.000</strong>
+                                    <small id="wash-deep-time"><i class="fa-regular fa-clock"></i> 35 Mnt</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Pengering -->
+                    <div class="service-card">
+                        <div class="card-image-box">
+                            <img src="https://images.unsplash.com/photo-1545173168-9f1947eebb7f?auto=format&fit=crop&w=600&q=80" alt="Layanan Pengering">
+                            <span class="tag-badge orange-bg"><i class="fa-solid fa-wind"></i> DRYER</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Pengeringan (Dryer)</h3>
+                            <p class="card-subtitle">Anti Bakteri, 100% Kering Tanpa Jemur</p>
+                            <div class="weight-selector">
+                                <label>Pilih Kapasitas Pakaian:</label>
+                                <div class="weight-buttons">
+                                    <button class="w-btn active" onclick="updateDry('7kg')">7 KG</button>
+                                    <button class="w-btn" onclick="updateDry('12kg')">12 KG</button>
+                                    <button class="w-btn" onclick="updateDry('18kg')">18 KG</button>
+                                </div>
+                            </div>
+                            <div class="price-duration-box">
+                                <div class="price-mode">
+                                    <span>Normal Dry</span>
+                                    <strong id="dry-normal-price">Rp 10.000</strong>
+                                    <small id="dry-normal-time"><i class="fa-regular fa-clock"></i> 12 Mnt</small>
+                                </div>
+                                <div class="price-divider"></div>
+                                <div class="price-mode">
+                                    <span>Extra Dry</span>
+                                    <strong id="dry-extra-price">Rp 12.000</strong>
+                                    <small id="dry-extra-time"><i class="fa-regular fa-clock"></i> 18 Mnt</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Setrika & Lipat -->
+                    <div class="service-card">
+                        <div class="card-image-box">
+                            <img src="https://images.unsplash.com/photo-1489274495757-95c7c837b101?auto=format&fit=crop&w=600&q=80" alt="Setrika dan Lipat">
+                            <span class="tag-badge pink-bg"><i class="fa-solid fa-shirt"></i> IRON & FOLD</span>
+                        </div>
+                        <div class="card-content">
+                            <h3>Setrika & Lipat Rapi</h3>
+                            <p class="card-subtitle">Pakaian Rapi, Harum, & Siap Masuk Lemari</p>
+                            <div class="weight-selector">
+                                <label>Pilih Kapasitas Pakaian:</label>
+                                <div class="weight-buttons">
+                                    <button class="w-btn active" onclick="updateIron('7kg')">7 KG</button>
+                                    <button class="w-btn" onclick="updateIron('12kg')">12 KG</button>
+                                    <button class="w-btn" onclick="updateIron('18kg')">18 KG</button>
+                                </div>
+                            </div>
+                            <div class="single-price-box">
+                                <span>Harga Layanan Setrika:</span>
+                                <strong id="iron-price">Rp 5.000</strong>
+                                <small><i class="fa-solid fa-check"></i> Termasuk Packaging Rapi</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="slide-btn next-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <!-- Status Mesin Real-Time -->
+        <section class="machine-status-bar">
+            <div class="status-container">
+                <div class="status-card active-card-status">
+                    <i class="fa-solid fa-rotate fa-spin-pulse"></i>
+                    <div>
+                        <h4>3 Mesin Terpakai</h4>
+                        <small>Sedang Berjalan</small>
+                    </div>
+                </div>
+                <div class="status-card ready-card-status">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div>
+                        <h4>5 Mesin Ready</h4>
+                        <small>Bisa langsung di-booking!</small>
+                    </div>
+                </div>
+                <div class="status-card queue-card-status">
+                    <i class="fa-solid fa-hourglass-start"></i>
+                    <div>
+                        <h4>Estimasi Antrian Selesai</h4>
+                        <strong id="est-time-text">Pukul 14:45 WIB</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking & Live Tracker Grid -->
+        <section id="action-zone" class="action-zone-section">
+            <div class="compact-grid">
+                <!-- Panel Booking -->
+                <div class="action-panel-box">
+                    <div class="panel-header">
+                        <span class="hot-badge"><i class="fa-solid fa-fire"></i> Slot Cepat Habis!</span>
+                        <h2>Booking Mesin IoT Sekarang!</h2>
+                        <p class="persuasive-text">Amankan mesin pilihanmu tanpa mengantre. Bayar via QRIS & dapatkan kode barcode otomatis!</p>
+                    </div>
+
+                    <form id="iot-booking-form" class="compact-form">
+                        <div class="form-group-compact">
+                            <label><i class="fa-solid fa-user"></i> Nama Pemesan:</label>
+                            <input type="text" id="cust-name-input" placeholder="Ketik nama kamu..." required>
+                        </div>
+                        <div class="form-group-compact">
+                            <label><i class="fa-solid fa-soap"></i> Pilih Jenis Layanan:</label>
+                            <select id="service-select-input">
+                                <option value="Cuci 7kg Quick Wash - Rp 8.000">Cuci 7kg Quick Wash (20 mnt) - Rp 8.000</option>
+                                <option value="Cuci 7kg Deep Clean - Rp 12.000">Cuci 7kg Deep Clean (35 mnt) - Rp 12.000</option>
+                                <option value="Dryer 7kg Normal Dry - Rp 10.000">Pengering 7kg Normal Dry (12 mnt) - Rp 10.000</option>
+                            </select>
+                        </div>
+                        <div class="form-group-compact">
+                            <label><i class="fa-solid fa-washing-machine"></i> Pilih Nomor Mesin Available:</label>
+                            <select id="machine-select-input">
+                                <option value="Mesin Cuci #01 (7kg)">Mesin Cuci #01 (7kg) - Ready</option>
+                                <option value="Mesin Cuci #02 (12kg)">Mesin Cuci #02 (12kg) - Ready</option>
+                                <option value="Mesin Dryer #01 (7kg)">Mesin Dryer #01 (7kg) - Ready</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-3d btn-glow-cyan"><i class="fa-solid fa-qrcode"></i> BAYAR QRIS & AMBIL BARCODE</button>
+                    </form>
+                </div>
+
+                <!-- Panel Live Tracker -->
+                <div class="action-panel-box tracker-panel-box">
+                    <div class="panel-header">
+                        <span class="hot-badge badge-amber"><i class="fa-solid fa-stopwatch"></i> Real-time Monitoring</span>
+                        <h2>Cek Sisa Waktu Cucian</h2>
+                        <p class="persuasive-text">Masukkan kode barcode-mu di bawah ini untuk memantau timer mesin secara live!</p>
+                    </div>
+
+                    <div class="tracker-form-compact">
+                        <div class="form-group-compact">
+                            <label><i class="fa-solid fa-key"></i> Kode Barcode / Transaction ID:</label>
+                            <div class="input-with-button">
+                                <input type="text" id="track-input-code" placeholder="Contoh: CW-8821">
+                                <button onclick="startLiveTrack()" class="btn-3d btn-primary-amber"><i class="fa-solid fa-play"></i> CEK</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="timer-active-card" class="timer-active-card hidden">
+                        <div class="pulse-indicator"><span class="dot"></span> MESIN SEDANG BERJALAN</div>
+                        <div class="timer-number-giant" id="countdown-clock">20:00</div>
+                        <p class="timer-subtext">Cucianmu sedang diproses. Bersantai dulu sambil ngopi di kafe!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL POPUP QRIS PEMBAYARAN -->
+    <div id="qris-modal" class="qris-modal-overlay hidden">
+        <div class="qris-card-box">
+            <button class="close-modal-btn" onclick="closeQrisModal()">&times;</button>
+            <div class="qris-header">
+                <i class="fa-solid fa-qrcode fa-2x text-cyan"></i>
+                <h3>PEMBAYARAN QRIS</h3>
+                <p>Scan menggunakan E-Wallet / Mobile Banking</p>
+            </div>
+            
+            <div class="qris-image-placeholder">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=CircuitWashPaymentSimulated" alt="QRIS Code Pembayaran">
+            </div>
+
+            <div class="qris-details">
+                <p>Nama: <strong id="summary-cust-name">-</strong></p>
+                <p>Layanan: <span id="summary-service">-</span></p>
+                <p class="total-price-text">Total Bayar: <strong id="summary-price">Rp 8.000</strong></p>
+            </div>
+
+            <button onclick="confirmPaymentAndShowBarcode()" class="btn-3d btn-glow-cyan"><i class="fa-solid fa-check-circle"></i> SAYA SUDAH BAYAR (DAPATKAN KODE)</button>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP BARCODE TERVERIFIKASI -->
+    <div id="barcode-modal" class="qris-modal-overlay hidden">
+        <div class="qris-card-box success-card-box">
+            <button class="close-modal-btn" onclick="closeBarcodeModal()">&times;</button>
+            <i class="fa-solid fa-circle-check text-success fa-3x"></i>
+            <h3>PEMBAYARAN TERVERIFIKASI!</h3>
+            <p>Silakan tempelkan barcode ini pada scanner mesin IoT di lokasi.</p>
+            
+            <div class="qr-code-box laser-scanner-effect">
+                <div class="laser-line"></div>
+                <i class="fa-solid fa-qrcode fa-5x"></i>
+                <h2 id="generated-barcode-text">CW-8821</h2>
+            </div>
+            
+            <p class="small-info-text">Simpan atau Screenshot Kode Ini untuk Cek Timer di Live Tracker!</p>
+            <button onclick="closeBarcodeModal()" class="btn-3d btn-secondary-amber btn-sm">Tutup / Mulai Nyuci</button>
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- HALAMAN 2: COFFEE, FOOD & LOYALTY CARD                  -->
+    <!-- ======================================================= -->
+    <div id="cafe-page" class="page-tab-content hidden-tab-page">
+        
+        <!-- Hero Section Cafe -->
+        <section class="hero-building-section hero-cafe-bg">
+            <div class="hero-overlay overlay-wood">
+                <div class="hero-badge badge-amber"><i class="fa-solid fa-mug-hot"></i> Cozy Coworking & Cafe Space</div>
+                <h1 class="hero-logo-text"><span class="wood-text-light">CAFÉ</span></h1>
+                <p class="hero-tagline">GOOD FOOD · GOOD MOOD · SAME SPOT</p>
+                <h2 class="hero-title-sub">Nugas Nyaman, Kopi Nikmat, <br><span class="gradient-text-gold">Bisa Sambil Nunggu Cucian!</span></h2>
+                <p class="hero-desc">Dilengkapi Free High-Speed WiFi, Stop Kontak di setiap meja, dan pilihan sajian lezat harga bersahabat untuk mahasiswa & pekerja.</p>
+            </div>
+        </section>
+
+        <!-- DIGITAL LOYALTY CARD SECTION -->
+        <section class="main-block section-loyalty">
+            <div class="block-header">
+                <span class="giant-label wood-label">SPECIAL PROGRAM</span>
+                <h2 class="giant-title">KARTU STAMP <span class="wood-text">LOYALTY PHYSICAL CARD</span></h2>
+                <p class="section-desc-text">Kumpulkan stamp tiap kali nyuci dan klaim promo menariknya!</p>
+            </div>
+
+            <div class="loyalty-promo-wrapper">
+                <!-- Tampilan Gambar Loyalty Card Bergerak / Floating Animation -->
+                <div class="loyalty-card-img-box floating-card-anim">
+                    <img src="assets/loyalty_card.png" alt="Circuit Wash Loyalty Card" onerror="this.src='https://images.unsplash.com/photo-1556742049-0a670f4a458d?auto=format&fit=crop&w=800&q=80'">
+                </div>
+
+                <!-- Pesan Promosi Persuasif -->
+                <div class="loyalty-promo-banner">
+                    <div class="promo-badge-tag"><i class="fa-solid fa-gift"></i> DAPATKAN KARTU FISIKMU SEKARANG!</div>
+                    <h3>Yuk, Datang Langsung ke Outlet Circuit Wash!</h3>
+                    <p>Lakukan transaksi cuci + pengering (min. 5 kg) di outlet kami, dan minta <strong>Kartu Loyalty Stamp Fisik</strong> kamu di kasir!</p>
+                    
+                    <div class="rewards-summary-pills">
+                        <div class="pill-item">
+                            <span class="pill-badge">5 STAMP</span>
+                            <span>Gratis Es Teh Segar</span>
+                        </div>
+                        <div class="pill-item">
+                            <span class="pill-badge badge-gold">10 STAMP</span>
+                            <span>Gratis Cuci hingga 5 KG!</span>
+                        </div>
+                    </div>
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=Jalan+Hang+Tuah+Surabaya" target="_blank" class="btn-3d btn-primary-amber">
+                        <i class="fa-solid fa-location-dot"></i> KUNJUNGI OUTLET SEKARANG
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAFE MENU CATALOG -->
+        <section id="cafe-menu-section" class="main-block section-cafe-katalog">
+            <div class="block-header">
+                <span class="giant-label wood-label">KATALOG MENU</span>
+                <h2 class="giant-title">MENU MAKANAN & <span class="wood-text">MINUMAN SEGAR</span></h2>
+                <p class="section-desc-text">Sajian menggugah selera untuk menemani waktu santai & nugasmu!</p>
+            </div>
+
+            <div class="food-katalog-grid">
+                <div class="menu-item-card">
+                    <div class="menu-img-container">
+                        <img src="assets/nasi_goreng.png" alt="Nasi Goreng" onerror="this.src='https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80'">
+                        <span class="menu-price-tag">Rp 13.000</span>
+                    </div>
+                    <div class="menu-info-body">
+                        <h3>Nasi Goreng Jawa</h3>
+                        <p>Nasi goreng bumbu spesial Jawa lengkap dengan telur ceplok setengah matang & acar segar.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item-card">
+                    <div class="menu-img-container">
+                        <img src="assets/mie_goreng.png" alt="Mie Goreng" onerror="this.src='https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=600&q=80'">
+                        <span class="menu-price-tag">Rp 13.000</span>
+                    </div>
+                    <div class="menu-info-body">
+                        <h3>Mie Goreng Jawa</h3>
+                        <p>Mie goreng resep tradisional lengkap dengan sayuran, bakso, dan telur ceplok gurih.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item-card">
+                    <div class="menu-img-container">
+                        <img src="assets/ayam_geprek.png" alt="Ayam Geprek" onerror="this.src='https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=600&q=80'">
+                        <span class="menu-price-tag">Rp 13.000</span>
+                    </div>
+                    <div class="menu-info-body">
+                        <h3>Ayam Geprek + Nasi</h3>
+                        <p>Ayam krispi gurih dengan ulekan sambal bawang pedas mantap + nasi hangat.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item-card">
+                    <div class="menu-img-container">
+                        <img src="assets/indomie_special.png" alt="Indomie Kuah & Goreng" onerror="this.src='https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80'">
+                        <span class="menu-price-tag">Rp 6.000 - Rp 8.000</span>
+                    </div>
+                    <div class="menu-info-body">
+                        <h3>Indomie Goreng / Kuah</h3>
+                        <p class="flavor-tags">Varian: Goreng Spesial, Soto Ayam, Ayam Bawang, Kari Ayam (+ Telur +2k)</p>
+                    </div>
+                </div>
+
+                <div class="menu-item-card">
+                    <div class="menu-img-container">
+                        <img src="assets/es_teh.png" alt="Es Teh Manis" onerror="this.src='https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=600&q=80'">
+                        <span class="menu-price-tag">Rp 5.000</span>
+                    </div>
+                    <div class="menu-info-body">
+                        <h3>Es Teh Manis Jumbo</h3>
+                        <p>Es teh segar dari daun teh pilihan, pas melepas dahaga saat cuaca panas.</p>
+                    </div>
+                </div>
+
+                <div class="menu-item-card">
+                    <div class="menu-img-container">
+                        <img src="assets/kopi_susu.png" alt="Kopi Susu Circuit" onerror="this.src='https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80'">
+                        <span class="menu-price-tag">Rp 5.000 - Rp 7.000</span>
+                    </div>
+                    <div class="menu-info-body">
+                        <h3>Aneka Varian Kopi</h3>
+                        <p class="flavor-tags">Varian: Kapal Api Hitam, ABC Kopi Susu, Good Day Cappuccino, Torabika Cappuccino</p>
+                    </div>
+                </div>
+
+                <div class="menu-item-card">
+                    <div class="menu-img-container">
+                        <img src="assets/pop_ice.png" alt="Pop Ice Blend" onerror="this.src='https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=600&q=80'">
+                        <span class="menu-price-tag">Rp 6.000</span>
+                    </div>
+                    <div class="menu-info-body">
+                        <h3>Pop Ice Blend Fresh</h3>
+                        <p class="flavor-tags">Varian Rasa: Cokelat, Stroberi, Vanilla Blue, Mangga, Alpukat, Taro</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER DIRECT LINKS -->
+    <footer class="footer-wood">
+        <div class="footer-container">
+            <div class="footer-info-block">
+                <h2 class="footer-logo">CIRCUIT<span>WASH</span></h2>
+                <p>Smart Self-Service Laundry & Café. Solusi Nyuci Modern & Area Nongkrong Mahasiswa.</p>
+                <p><i class="fa-solid fa-wifi"></i> Free High-Speed WiFi & Stop Kontak di Setiap Meja (Lantai 2 Cafe)</p>
+            </div>
+
+            <div class="footer-contact-block">
+                <h3>HUBUNGI KAMI & LOKASI</h3>
+                <div class="contact-links">
+                    <a href="https://wa.me/6281359034811" target="_blank" class="footer-btn wa-btn">
+                        <i class="fa-brands fa-whatsapp"></i> Chat WhatsApp: 081359034811
+                    </a>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Jalan+Hang+Tuah+Surabaya" target="_blank" class="footer-btn maps-btn">
+                        <i class="fa-solid fa-location-dot"></i> Lokasi: Jalan Hang Tuah (Buka Google Maps)
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Circuit Wash. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
